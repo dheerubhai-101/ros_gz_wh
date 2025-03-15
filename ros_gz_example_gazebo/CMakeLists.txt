@@ -13,14 +13,11 @@ find_package(ros_gz_example_description REQUIRED)
 find_package(gz_cmake_vendor REQUIRED)
 find_package(gz_plugin_vendor REQUIRED COMPONENTS register)
 find_package(gz-plugin REQUIRED)
-# set(GZ_PLUGIN_VER ${gz_plugin_vendor_VERSION_MAJOR})
 find_package(gz_common_vendor REQUIRED COMPONENTS profiler)
-# set(GZ_COMMON_VER ${gz_common_vendor_VERSION_MAJOR})
 
 # Harmonic
   find_package(gz_sim_vendor REQUIRED)
   find_package(gz-sim REQUIRED)
-  # set(GZ_SIM_VER ${gz-sim8_VERSION_MAJOR})
   message(STATUS "Compiling against Gazebo Harmonic")
 
 
@@ -48,7 +45,7 @@ target_include_directories(
 # be linked to anoter target. 
 # ${GZ_SIM_VER} is substituted by the value that is was set to above.
 target_link_libraries(BasicSystem PRIVATE
-  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER})
+  gz-sim::gz-sim)
 
 
 # Following directives similarly specify another target: 'FullSystem'.
@@ -62,7 +59,7 @@ target_include_directories(
 )
 
 target_link_libraries(FullSystem PRIVATE
-  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER})
+  gz-sim::gz-sim)
 
 
 
