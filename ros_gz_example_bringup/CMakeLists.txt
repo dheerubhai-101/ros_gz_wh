@@ -5,6 +5,7 @@ project(ros_gz_example_bringup)
 find_package(ament_cmake REQUIRED)
 find_package(ros_gz_example_description REQUIRED)
 find_package(ros_gz_example_gazebo REQUIRED)
+find_package(turtlebot4_description REQUIRED)
 
 # Install project launch files
 install(
