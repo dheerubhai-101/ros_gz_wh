@@ -29,7 +29,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_project_description,
             'worlds',
-            'custom_warehouse.sdf'
+            'warehouse.sdf'
         ])}.items(),
     )
 
