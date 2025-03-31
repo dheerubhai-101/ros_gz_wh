@@ -33,6 +33,24 @@ def generate_launch_description():
         ])}.items(),
     )
 
-    return LaunchDescription([
-    gz_sim
-    ])
+    # Load the SDF file from "description" package
+    sdf_file  =  os.path.join(pkg_project_description, 'models', 'Warehouse Robot', 'model.sdf')
+    with open(sdf_file, 'r') as infp:
+        robot_desc = infp.read()
+
+        # Takes the description and joint angles as inputs and publishes the 3D poses of the robot links
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        output='both',
+        parameters=[
+            {'use_sim_time': True},
+            {'robot_description': robot_desc},
+        ]
+    )
+
+    ld = LaunchDescription()
+    ld.add_action(gz_sim)
+    ld.add_action(robot_state_publisher)
+    return ld

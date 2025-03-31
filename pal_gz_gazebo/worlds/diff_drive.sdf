@@ -34,6 +34,10 @@
       filename="FullSystem"
       name="ros_gz_example_gazebo::FullSystem">
     </plugin>
+    <plugin
+      filename="DummySensorSystem"
+      name="dummysensor::DummySensorSystem">
+    </plugin>
 
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
@@ -103,6 +107,19 @@
         <odom_frame>diff_drive/odom</odom_frame>
         <robot_base_frame>diff_drive</robot_base_frame>
       </plugin>
+      
+      <sensor name="rfid_antenna" type="custom" gz:type="rfid">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>true</visualize>
+          <gz:rfid>
+            <noise type="gaussian">
+              <mean>0.00001</mean>
+              <stddev>0.00001</stddev>
+            </noise>
+          </gz:rfid>
+      </sensor>
+
     </model>
 
   </world>

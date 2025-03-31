@@ -21,6 +21,40 @@ find_package(gz_common_vendor REQUIRED COMPONENTS profiler)
   message(STATUS "Compiling against Gazebo Harmonic")
 
 
+find_package(gz_sensors_vendor REQUIRED)
+find_package(gz-sensors REQUIRED)
+
+
+add_library(DummySensor 
+  SHARED
+  src/DummySensor.cc
+  )
+
+target_include_directories(
+  DummySensor PRIVATE include
+)
+
+target_link_libraries(
+  DummySensor 
+  PRIVATE gz-sensors::gz-sensors
+)
+
+add_library(DummySensorSystem
+  SHARED 
+  src/DummySensorSystem.cc
+)
+  
+target_include_directories(
+  DummySensorSystem PUBLIC include
+)
+
+target_link_libraries(
+  DummySensorSystem
+  PRIVATE gz-plugin::gz-plugin
+  PRIVATE gz-sim::gz-sim
+  PRIVATE gz-sensors::gz-sensors
+  PRIVATE DummySensor
+)
 
 # Following 'add_library' directive defines a library target named 'BasicSystem'.
 # The 'SHARED' keyword indicates that a shared library should be compiled, and
@@ -67,7 +101,7 @@ target_link_libraries(FullSystem PRIVATE
 # of the 'BasicSystem' and 'FullSystem' targets will be copied
 # to the subfolder 'lib/ros_gz_example_gazebo' of the install directory.
 install(
-  TARGETS BasicSystem FullSystem
+  TARGETS BasicSystem FullSystem DummySensor DummySensorSystem
   DESTINATION lib/${PROJECT_NAME}
 )
 
