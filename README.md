@@ -1,20 +1,16 @@
-# ros_gz_project_template
-A template project integrating ROS 2 and Gazebo simulator.
+# Gazebo Warehouse Simulation
+A template project integrating ROS 2 and Gazebo for warehouse simulation and a custom sensor plugin.
 
 ## Included packages
 
-* `ros_gz_example_description` - holds the sdf description of the simulated system and any other assets.
+* `pal_gz_example_description` - holds the sdf description of the simulated system and any other assets.
 
-* `ros_gz_example_gazebo` - holds gazebo specific code and configurations. Namely this is where systems end up.
+* `pal_gz_example_gazebo` - holds gazebo specific code and configurations. Namely this is where systems end up.
 
-* `ros_gz_example_application` - holds ros2 specific code and configurations.
+* `pal_gz_example_application` - holds ros2 specific code and configurations.
 
-* `ros_gz_example_bringup` - holds launch files and high level utilities.
+* `pal_gz_example_bringup` - holds launch files and high level utilities.
 
-
-## Install
-
-For using the template with Gazebo Fortress switch to the `fortress` branch of this repository, otherwise use the default branch `main` for Gazebo Harmonic onwards.
 
 ### Requirements
 
